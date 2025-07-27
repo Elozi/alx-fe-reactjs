@@ -4,9 +4,11 @@ import { v4 as uuidv4 } from 'uuid';
 
 export const useRecipeStore = create((set) => ({
   recipes: [],
-   favorites: [],
+  favorites: [],
   recommendations: [],
+  searchTerm: '', // ✅ Add this line
 
+  setSearchTerm: (term) => set(() => ({ searchTerm: term })), // ✅ Add this line
 
   addRecipe: (recipe) =>
     set((state) => ({
@@ -24,22 +26,19 @@ export const useRecipeStore = create((set) => ({
     set((state) => ({
       recipes: state.recipes.filter((recipe) => recipe.id !== id),
     })),
-     // Add to favorites
+
   addFavorite: (recipeId) =>
     set((state) => ({
       favorites: [...new Set([...state.favorites, recipeId])],
     })),
 
-  // Remove from favorites
   removeFavorite: (recipeId) =>
     set((state) => ({
       favorites: state.favorites.filter((id) => id !== recipeId),
     })),
 
-  // Load recipes (for demo or mock)
   setRecipes: (recipes) => set(() => ({ recipes })),
 
-  // Generate mock recommendations
   generateRecommendations: () =>
     set((state) => {
       const recommended = state.recipes.filter(
@@ -47,5 +46,5 @@ export const useRecipeStore = create((set) => ({
           state.favorites.includes(recipe.id) && Math.random() > 0.4
       );
       return { recommendations: recommended };
-       }),
+    }),
 }));
