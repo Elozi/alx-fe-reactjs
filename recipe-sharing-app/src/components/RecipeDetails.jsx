@@ -1,4 +1,3 @@
-// src/components/RecipeDetails.jsx
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useRecipeStore } from '../store/recipeStore';
@@ -16,6 +15,7 @@ const RecipeDetails = () => {
   return (
     <div>
       <h2>{recipe.title}</h2>
+      <p><strong>ID:</strong> {recipe.id}</p> {/* ✅ Explicitly reference recipe.id */}
       <p>{recipe.description}</p>
       <EditRecipeForm recipe={recipe} />
       <DeleteRecipeButton recipeId={id} />
