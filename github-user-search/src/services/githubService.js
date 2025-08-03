@@ -1,10 +1,15 @@
 import axios from 'axios';
 
-export const fetchUserData = async (username) => {
-  const URL = `https://api.github.com/users/${username}`;
+export const fetchAdvancedUserSearch = async ({ username, location, minRepos }) => {
+  let query = '';
+
+  if (username) query += `${username} in:login `;
+  if (location) query += `location:${location} `;
+  if (minRepos) query += `repos:>=${minRepos}`;
+
+  const URL = `https://api.github.com/search/users?q=${encodeURIComponent(query.trim())}`;
   const headers = {};
 
-  // Optional: Add auth if you are using a token
   const token = import.meta.env.VITE_GITHUB_API_KEY;
   if (token) {
     headers.Authorization = `token ${token}`;
