@@ -5,7 +5,8 @@ function Search() {
   const [formData, setFormData] = useState({
     username: '',
     location: '',
-    minRepos: '',
+    minRepos
+    : '',
   });
 
   const [users, setUsers] = useState([]);
