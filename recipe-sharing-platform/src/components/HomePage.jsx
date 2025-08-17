@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom'; // <-- Import Link
+import { Link } from 'react-router-dom';
 import data from '../data.json';
 
 const HomePage = () => {
@@ -12,6 +12,17 @@ const HomePage = () => {
   return (
     <div className="p-6 bg-gray-50 min-h-screen">
       <h1 className="text-3xl font-bold mb-6 text-center">Recipe Sharing Platform</h1>
+
+      {/* Add Recipe Button */}
+      <div className="mb-6 text-center">
+        <Link to="/add">
+          <button className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition duration-300">
+            + Add New Recipe
+          </button>
+        </Link>
+      </div>
+
+      {/* Recipe Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {recipes.map((recipe) => (
           <Link to={`/recipe/${recipe.id}`} key={recipe.id}>
