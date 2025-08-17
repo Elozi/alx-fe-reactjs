@@ -24,26 +24,31 @@ const RecipeDetail = () => {
           className="w-full h-64 object-cover rounded-lg mb-4"
         />
         <h1 className="text-3xl font-bold mb-2">{recipe.title}</h1>
-        <p className="text-gray-600 mb-4">{recipe.summary}</p>
+        <p className="text-gray-600 mb-6">{recipe.summary}</p>
 
-        {/* Placeholder: Add more detailed content */}
-        <div className="mb-6">
-          <h2 className="text-2xl font-semibold mb-2">Ingredients</h2>
-          <ul className="list-disc list-inside text-gray-700 space-y-1">
-            <li>Ingredient 1</li>
-            <li>Ingredient 2</li>
-            <li>Ingredient 3</li>
-          </ul>
-        </div>
+        {/* Ingredients */}
+        {recipe.ingredients && (
+          <div className="mb-6">
+            <h2 className="text-2xl font-semibold mb-2">Ingredients</h2>
+            <ul className="list-disc list-inside space-y-1 text-gray-700">
+              {recipe.ingredients.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        )}
 
-        <div className="mb-6">
-          <h2 className="text-2xl font-semibold mb-2">Instructions</h2>
-          <ol className="list-decimal list-inside text-gray-700 space-y-1">
-            <li>Step 1</li>
-            <li>Step 2</li>
-            <li>Step 3</li>
-          </ol>
-        </div>
+        {/* Instructions */}
+        {recipe.instructions && (
+          <div className="mb-6">
+            <h2 className="text-2xl font-semibold mb-2">Instructions</h2>
+            <ol className="list-decimal list-inside space-y-1 text-gray-700">
+              {recipe.instructions.map((step, index) => (
+                <li key={index}>{step}</li>
+              ))}
+            </ol>
+          </div>
+        )}
 
         <Link
           to="/"
