@@ -1,8 +1,10 @@
-// src/App.jsx
+import React from 'react';
+import HomePage from '../components/HomePage';
+
 function App() {
   return (
-    <div className="text-2xl text-blue-500 font-bold p-4">
-      Recipe Sharing Platform
+    <div>
+      <HomePage />
     </div>
   );
 }
