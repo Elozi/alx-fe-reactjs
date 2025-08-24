@@ -8,7 +8,7 @@ import ProfileSettings from './components/ProfileSettings';
 import BlogPost from './pages/BlogPost';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
-import ProtectedRoute from './routes/ProtectedRoute';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
