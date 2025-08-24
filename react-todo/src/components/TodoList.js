@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import AddTodoForm from './AddTodoForm';
 
 const initialTodos = [
   { id: 1, text: "Learn React", completed: false },
@@ -8,47 +9,22 @@ const initialTodos = [
 
 function TodoList() {
   const [todos, setTodos] = useState(initialTodos);
-  const [inputValue, setInputValue] = useState("");
 
-  const addTodo = (e) => {
-    e.preventDefault();
-    if (!inputValue.trim()) return;
-
+  const addTodo = (text) => {
     const newTodo = {
       id: Date.now(),
-      text: inputValue.trim(),
+      text,
       completed: false,
     };
     setTodos((prev) => [...prev, newTodo]);
-    setInputValue("");
   };
 
-  const toggleTodo = (id) => {
-    setTodos((prev) =>
-      prev.map((todo) =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
-    );
-  };
-
-  const deleteTodo = (id) => {
-    setTodos((prev) => prev.filter((todo) => todo.id !== id));
-  };
+  // toggleTodo and deleteTodo as before...
 
   return (
     <div>
       <h1>Todo List</h1>
-      <form onSubmit={addTodo} aria-label="Add todo form">
-        <input
-          type="text"
-          placeholder="Add todo"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          aria-label="Add todo input"
-        />
-        <button type="submit">Add</button>
-      </form>
-
+      <AddTodoForm onAdd={addTodo} />
       <ul>
         {todos.map(({ id, text, completed }) => (
           <li
@@ -61,7 +37,7 @@ function TodoList() {
             <button
               aria-label={`delete-todo-${id}`}
               onClick={(e) => {
-                e.stopPropagation(); // prevent toggle when clicking delete
+                e.stopPropagation();
                 deleteTodo(id);
               }}
             >
