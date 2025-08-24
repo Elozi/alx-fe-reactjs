@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import TodoList from '../TodoList';
+import TodoList from '../TodoList'; // Adjust path if needed
 
 describe('TodoList Component', () => {
   test('renders initial todos', () => {
@@ -11,36 +11,31 @@ describe('TodoList Component', () => {
     expect(screen.getByText('Build a todo app')).toBeInTheDocument();
   });
 
-  test('can add a new todo', () => {
+  test('adds a new todo item', () => {
     render(<TodoList />);
     const input = screen.getByLabelText('Add todo input');
     const form = screen.getByLabelText('Add todo form');
 
-    fireEvent.change(input, { target: { value: 'New todo item' } });
+    fireEvent.change(input, { target: { value: 'New Task' } });
     fireEvent.submit(form);
 
-    expect(screen.getByText('New todo item')).toBeInTheDocument();
+    expect(screen.getByText('New Task')).toBeInTheDocument();
   });
 
-  test('can toggle a todo completion', () => {
+  test('toggles todo completion', () => {
     render(<TodoList />);
-    const todoItem = screen.getByText('Learn React');
+    const todo = screen.getByText('Learn React');
 
-    expect(todoItem).not.toHaveStyle('text-decoration: line-through');
+    fireEvent.click(todo);
+    expect(todo).toHaveStyle('text-decoration: line-through');
 
-    fireEvent.click(todoItem);
-
-    expect(todoItem).toHaveStyle('text-decoration: line-through');
-
-    fireEvent.click(todoItem);
-
-    expect(todoItem).not.toHaveStyle('text-decoration: line-through');
+    fireEvent.click(todo);
+    expect(todo).not.toHaveStyle('text-decoration: line-through');
   });
 
-  test('can delete a todo', () => {
+  test('deletes a todo item', () => {
     render(<TodoList />);
-    const deleteButton = screen.getByLabelText('delete-todo-1'); // Delete "Learn React"
-
+    const deleteButton = screen.getByLabelText('delete-todo-1');
     fireEvent.click(deleteButton);
 
     expect(screen.queryByText('Learn React')).not.toBeInTheDocument();
