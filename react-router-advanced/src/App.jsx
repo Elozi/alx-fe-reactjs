@@ -2,9 +2,9 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
-import Profile from './pages/Profile/Profile';
-import ProfileDetails from './pages/Profile/ProfileDetails';
-import ProfileSettings from './pages/Profile/ProfileSettings';
+import Profile from './pages/Profile';
+import ProfileDetails from './pages/ProfileDetails';
+import ProfileSettings from './pages/ProfileSettings';
 import BlogPost from './pages/BlogPost';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
